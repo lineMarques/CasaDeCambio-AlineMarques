@@ -1,0 +1,7 @@
+select:focus, input:focus{
+    outline: 0;
+}
+
+select{
+    background: white;
+}   

@@ -4,17 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Document</title>
 </head>
 
-<body>
+<body class="bg-light d-flex justify-content-center">
 
-    <input type="button" name="nmMoedasAjax" id="idBtnMoedasAjax" value="Buscar Moeda AJAX"/>
+    <!-- <input type="button" name="nmMoedasAjax" id="idBtnMoedasAjax" value="Buscar Moeda AJAX"/> -->
 
-    <input type="button" name="nmMoedasFecth" id="idBtnMoedasFetch" value="Buscar Moeda FETCH"/>
+    <main class="border m-5 p-5 bg-white justify-content-center">
+        <div class="row">
+            <input type="radio" class="btn-check" name="options" id="idVenda" checked>
+            <label class="btn col-6 rounded-start-pill bg-primary-subtle" for="idVenda">Quero vender Moeda</label>
+
+            <input type="radio" class="btn-check" name="options" id="idCompra" autocomplete="off">
+            <label class="btn col-6 rounded-end-pill bg-primary-subtle  " for="idCompra">Quero comprar Moeda</label>
+        </div>                 
+
+        <form>
+            
+            <p class="mt-5 mb-5">Você Vende</p>  
+
+            <div class="row mt-4">
+                <select class="col border-0 me-5" name="nmSelect" id="idSelectMoedas">
+                    <option selected>Moeda</option>
+                </select>
+
+                <input class="col-8 border-0 text-lg-center  " type="number" name="nmValorInicial" id="idValorInicial"
+                    placeholder="Digite o valor">
+                <hr>
+            </div>
+
+            <p class="mt-5 mb-5">Você Recebe</p>  
+
+            <div class="row mt-4">
+                <select class="col border-0 me-5" name="nmSelect" id="idSelectMoedas">
+                    <option selected>Moeda</option>
+                </select>
+
+                <input class="col-8 border-0 text-lg-center  " type="number" name="nmValorInicial" id="idValorInicial"
+                    placeholder="Digite o valor">
+                <hr>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg mt-5">Vender Online</button>
+
+        </form>
+
+    </main>
 
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -1,5 +1,4 @@
-
-/* Consumo de API com AJAX */ 
+/* Consumo de API com AJAX */
 
 /* var btBuscarMoedaAjax = document.getElementById("idBtnMoedasAjax");
 
@@ -29,22 +28,37 @@ function imprimirMoeda(moedaJSON) {
   moedaOBJ.value.forEach((element) => {
     console.table("AJAX", element.simbolo);
   });
-} */ 
-
+} */
 
 /* consumo de api via fetch */
-var btBuscarMoedaFetch = document.getElementById("idBtnMoedasFetch");
+let select = document.getElementById("idSelectMoedas");
 
-btBuscarMoedaFetch.onclick = async function () {
+select.onclick = async function () {
   let moedas = await buscaMoedaFetch();
-  console.log(moedas);
+
+  moedas.value.forEach(function (element) {
+    let option = document.createElement("option");
+    option.value = element.simbolo;
+    option.textContent += element.simbolo;
+    select.appendChild(option);
+  });
+
+  let cotacao = await cotacaoDoDia(select.value);
+  
 };
 
 /* consumo de api com fetch */
 async function buscaMoedaFetch() {
-  var resposta = await fetch(
+  let resposta = await fetch(
     "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/Moedas?$top=100&$format=json&$select=simbolo,nomeFormatado,tipoMoeda"
   );
 
+  return resposta.json();
+}
+
+async function cotacaoDoDia(moeda) {
+  let data = new Date().toLocaleDateString().replaceAll("/", "-");
+  let resposta = await fetch(" https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodoFechamento(codigoMoeda=@codigoMoeda,dataInicialCotacao=@dataInicialCotacao,dataFinalCotacao=@dataFinalCotacao)?@codigoMoeda='"+ moeda +"'&@dataInicialCotacao='"+data+"'&@dataFinalCotacao='01-11-2023'&$format=json&$select=cotacaoCompra,cotacaoVenda");
+ 
   return resposta.json();
 }
